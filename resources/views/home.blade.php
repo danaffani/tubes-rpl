@@ -13,7 +13,8 @@
     <style>
         body, html {
             margin: 0;
-            padding: 0;
+            padding-top: 50px;
+            padding-bottom: 50px;
             height: 100%;
             font-family: 'Nunito', sans-serif;
             background-color: black;
@@ -24,8 +25,9 @@
 
         .container {
             width: 80%;
+            height: auto;
             margin: 20px;
-            padding: 20px;
+            padding: 50px;
             background-color: white;
             box-sizing: border-box;
             border-radius: 10px;
@@ -35,12 +37,13 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 20px;
+            margin-bottom: 50px;
         }
 
         .brand {
-            font-size: 1.5em;
+            font-size: 40px;
             color: black;
+            font-weight: bold;
         }
 
         .auth-buttons {
@@ -59,12 +62,11 @@
             background-color: black;
             color: white;
             font-weight: bold;
-            border-radius: 10px;
         }
 
         .auth-buttons .register {
             color: black;
-            font-weight: bold;
+            font-weight: 800;
         }
 
         .hero-image {
@@ -78,6 +80,7 @@
             width: 100%;
             height: auto;
             border-radius: 10px;
+            filter: brightness(0.5);
         }
 
         .hero-text {
@@ -90,20 +93,23 @@
         }
 
         .hero-text h1 {
-            font-size: 4em;
+            font-size: 3em;
             font-weight: bold;
         }
 
         .hero-text p {
-            font-size: 1.5em;
+            font-size: 1.25em;
+            font-weight: bold;
+            margin-bottom: 70px;
         }
 
         .hero-text .btn {
             background-color: black;
-            border-radius: 25px;
+            border-radius: 10px;
             padding: 10px 20px;
             color: white;
             text-decoration: none;
+            font-weight: bold;
         }
     </style>
 </head>
