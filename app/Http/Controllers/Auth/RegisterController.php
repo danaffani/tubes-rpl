@@ -72,4 +72,9 @@ class RegisterController extends Controller
             'role' => $data['role'],
         ]);
     }
+
+    public function showRegistrationForm()
+    {
+        return view('auth.register');
+    }
 }

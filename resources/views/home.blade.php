@@ -13,8 +13,7 @@
     <style>
         body, html {
             margin: 0;
-            padding-top: 30px;
-            padding-bottom: 20px;
+            padding: 0;
             height: 100%;
             font-family: 'Nunito', sans-serif;
             background-color: black;
@@ -25,9 +24,8 @@
 
         .container {
             width: 80%;
-            height: auto;
             margin: 20px;
-            padding: 40px;
+            padding: 20px;
             background-color: white;
             box-sizing: border-box;
             border-radius: 10px;
@@ -37,13 +35,12 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
         }
 
         .brand {
-            font-size: 48px;
+            font-size: 1.5em;
             color: black;
-            font-weight: bold;
         }
 
         .auth-buttons {
@@ -62,6 +59,7 @@
             background-color: black;
             color: white;
             font-weight: bold;
+            border-radius: 10px;
         }
 
         .auth-buttons .register {
@@ -114,8 +112,18 @@
         <div class="top-bar">
             <div class="brand">SewaRuang.id</div>
             <div class="auth-buttons">
-                <a href="{{ route('register') }}" class="register">Register</a>
-                <a href="{{ route('login') }}" class="login">Login</a>
+                @guest
+                    <a href="{{ route('register') }}" class="register">Register</a>
+                    <a href="{{ route('login') }}" class="login">Login</a>
+                @else
+                    <a href="{{ route('logout') }}" class="login"
+                       onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                       Logout
+                    </a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
+                @endguest
             </div>
         </div>
         <div class="hero-image">
