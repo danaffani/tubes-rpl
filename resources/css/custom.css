@@ -1,17 +1,30 @@
-body {
+/* public/css/custom.css */
+footer {
     background-color: #f8f9fa;
+    padding: 20px 0;
+    text-align: center;
 }
-.navbar {
-    background-color: #343a40;
+
+footer .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
 }
-.navbar-brand, .nav-link {
-    color: #ffffff !important;
+
+footer h4 {
+    margin-bottom: 10px;
 }
-.card {
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+footer ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
 }
-.btn-primary {
-    background-color: #007bff;
-    border-color: #007bff;
+
+footer ul li {
+    margin: 0 10px;
+}
+
+footer ul li a img {
+    width: 24px;
 }
