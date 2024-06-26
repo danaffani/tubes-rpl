@@ -1,92 +1,171 @@
-@extends('layouts.app')
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-6">
-            <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
+    <title>SewaRuang.id</title>
 
-                <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
-                        @csrf
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;600&display=swap" rel="stylesheet">
 
-                        <div class="row mb-3">
-                            <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Name') }}</label>
+    <!-- Styles -->
+    <style>
+        body {
+            margin: 0;
+            height: 100%;
+            font-family: 'Nunito', sans-serif;
+            background-color: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
 
-                            <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+        .container {
+            width: 80%;
+            height: auto;
+            margin: 20px;
+            background-color: white;
+            box-sizing: border-box;
+            border-radius: 10px;
+        }
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 50px;
+            background-color: white;
+            border-radius: 10px;
+        }
 
-                                @error('name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
+        .brand {
+            font-size: 40px;
+            color: black;
+            font-weight: bold;
+        }
 
-                        <div class="row mb-3">
-                            <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
+        .auth-buttons {
+            display: flex;
+            gap: 10px;
+        }
 
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+        .auth-buttons a {
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-size: 1em;
+            font-weight: bold;
+        }
 
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
+        .auth-buttons .register {
+            background-color: black;
+            color: white;
+        }
 
-                        <div class="row mb-3">
-                            <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
+        .auth-buttons .home {
+            color: black;
+        }
 
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+        .gray-box {
+            background-color: #f0f0f0;
+            display: flex;
+            padding-top: 50px;
+            padding-bottom: 50px;
+            margin-bottom: 50px;
+            justify-content: center;
+            width: 100%;    
+            height: 100%;
+        }
 
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
+        .form-container {
+            background-color: white;
+            padding: 40px;
+            border-radius: 10px;
+            width: 80%;
+            max-width: 600px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
 
-                        <div class="row mb-3">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-end">{{ __('Confirm Password') }}</label>
+        .form-container h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 2em;
+            font-weight: bold;
+        }
 
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
-                            </div>
-                        </div>
+        .form-container form {
+            display: flex;
+            flex-direction: column;
+        }
 
-                        <div class="row mb-3">
-                            <label for="role" class="col-md-4 col-form-label text-md-end">{{ __('Role') }}</label>
-                            <div class="col-md-6">
-                                <input type="radio" name="role" value="User" checked> User
-                                <input type="radio" name="role" value="Admin"> Admin
-                            </div>
-                        </div>
+        .form-container label {
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
 
-                        <div class="row mb-3" id="admin-key" style="display: none;">
-                            <label for="admin_key" class="col-md-4 col-form-label text-md-end">{{ __('Admin Key') }}</label>
-                            <div class="col-md-6">
-                                <input id="admin_key" type="text" class="form-control" name="admin_key">
-                            </div>
-                        </div>
+        .form-container input {
+            margin-bottom: 20px;
+            padding: 10px;
+            font-size: 1em;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
 
-                        <div class="row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary btn-block">
-                                    {{ __('Register') }}
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
+        .form-container button {
+            background-color: black;
+            color: white;
+            border: none;
+            padding: 15px;
+            font-size: 1em;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .form-container button:hover {
+            background-color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="top-bar">
+            <div class="brand">SewaRuang.id</div>
+            <div class="auth-buttons">
+                <a href="{{ route('home') }}" class="home">Home</a>
+                <a href="{{ route('login') }}" class="register">Login</a>
+            </div>
+        </div>
+        <div class="gray-box">
+            <div class="form-container">
+            <h2>Register</h2>
+        <form method="POST" action="{{ route('register') }}">
+            @csrf
+            <label for="name">Username</label>
+            <input id="name" type="text" name="name" placeholder="Type your name" required autofocus>
+
+            <label for="email">Email Address</label>
+            <input id="email" type="email" name="email" placeholder="Type your email address" required>
+
+            <label for="password">Password</label>
+            <input id="password" type="password" name="password" placeholder="Type your desired password" required>
+
+            <label for="password-confirm">Confirm Password</label>
+            <input id="password-confirm" type="password" name="password_confirmation" placeholder="Type your desired password once again" required>
+
+            <label>Role:</label>
+            <div>
+                <input type="radio" name="role" value="User" checked> User
+                <input type="radio" name="role" value="Admin"> Admin
+            </div>
+
+            <label for="admin_key">Admin Key</label>
+            <input id="admin_key" type="text" name="admin_key" placeholder="Admin register key">
+
+            <button type="submit">Register</button>
+        </form>
+
             </div>
         </div>
     </div>
-</div>
-@endsection
+</body>
+</html>
